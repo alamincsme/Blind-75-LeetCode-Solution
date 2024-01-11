@@ -56,10 +56,7 @@ public class RemoveTheDuplicates {
                 // Process a non-duplicate node
                 counter.put(curr_node.val, 1);
 
-                if (prev == null) {
-                    // Update head for the first non-duplicate node
-                    head = curr_node;
-                } else {
+                if (prev != null) {
                     prev.next = curr_node;
                 }
 
@@ -72,6 +69,7 @@ public class RemoveTheDuplicates {
         if (prev != null) {
             prev.next = null;
         }
+
     }
 
     public static void main(String[] args) {
@@ -80,6 +78,11 @@ public class RemoveTheDuplicates {
         // Adding elements to the linked list
         list.append(1);
         list.append(2);
+        list.append(2);
+        list.append(3);
+        list.append(4);
+        list.append(4);
+        list.append(5);
         list.append(2);
         list.append(3);
         list.append(4);
