@@ -30,6 +30,7 @@ public class RemoveTheDuplicates {
         }
     }
 
+    //time complexity o(n^2);
     public void printList() {
         Node curr_node = head;
         while (curr_node != null) {
@@ -39,36 +40,27 @@ public class RemoveTheDuplicates {
         System.out.println();
     }
 
+
+
     public void deleteDuplicates() {
-        if (head == null || head.next == null) {
-            return;
-        }
-
-        Map<Integer, Integer> counter = new HashMap<>();
         Node curr_node = head;
-        Node prev = null;
+        Node node ;
+        int cnt = 0 ;
 
-        while (curr_node != null) {
-            if (counter.containsKey(curr_node.val)) {
-                // Skip the duplicate node
-                curr_node = curr_node.next;
-            } else {
-                // Process a non-duplicate node
-                counter.put(curr_node.val, 1);
-
-                if (prev != null) {
-                    prev.next = curr_node;
+        for (;curr_node != null;) {
+            node = curr_node;
+            for (; node.next != null; ) {
+                System.out.println(cnt++);
+                if (node.next.val == curr_node.val) {
+                    node.next = node.next.next;
+                } else {
+                    node = node.next;
                 }
-
-                prev = curr_node;
-                curr_node = curr_node.next;
             }
+
+            curr_node = curr_node.next ;
         }
 
-        // Set next of the last non-duplicate node to null
-        if (prev != null) {
-            prev.next = null;
-        }
 
     }
 
@@ -77,10 +69,10 @@ public class RemoveTheDuplicates {
 
         // Adding elements to the linked list
         list.append(1);
-        list.append(2);
-        list.append(2);
-        list.append(3);
-        list.append(4);
+        list.append(1);
+        list.append(1);
+        list.append(1);
+        list.append(1);
         list.append(4);
         list.append(5);
         list.append(2);
@@ -99,3 +91,38 @@ public class RemoveTheDuplicates {
         list.printList();
     }
 }
+
+
+//time complexity O(n)
+//public void deleteDuplicates() {
+//    if (head == null || head.next == null) {
+//        return;
+//    }
+//
+//    Map<Integer, Integer> counter = new HashMap<>();
+//    Node curr_node = head;
+//    Node prev = null;
+//
+//    while (curr_node != null) {
+//        if (counter.containsKey(curr_node.val)) {
+//            // Skip the duplicate node
+//            curr_node = curr_node.next;
+//        } else {
+//            // Process a non-duplicate node
+//            counter.put(curr_node.val, 1);
+//
+//            if (prev != null) {
+//                prev.next = curr_node;
+//            }
+//
+//            prev = curr_node;
+//            curr_node = curr_node.next;
+//        }
+//    }
+//
+//    // Set next of the last non-duplicate node to null
+//    if (prev != null) {
+//        prev.next = null;
+//    }
+//
+//}
