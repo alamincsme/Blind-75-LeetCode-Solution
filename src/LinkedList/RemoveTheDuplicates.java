@@ -30,7 +30,7 @@ public class RemoveTheDuplicates {
         }
     }
 
-    //time complexity o(n^2);
+
     public void printList() {
         Node curr_node = head;
         while (curr_node != null) {
@@ -41,7 +41,7 @@ public class RemoveTheDuplicates {
     }
 
 
-
+    //time complexity o(n^2);
     public void deleteDuplicates() {
         Node curr_node = head;
         Node node ;
