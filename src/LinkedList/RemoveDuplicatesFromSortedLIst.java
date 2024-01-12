@@ -3,23 +3,34 @@ package LinkedList;
 //time complexity O(n^2)
 public class RemoveDuplicatesFromSortedLIst {
 
-    public Node  removeDuplicates(Node head) {
+    public Node removeDuplicates(Node head) {
 
 
         if (head == null || head.next == null) {
             return head;
         }
-        int cnt = 0 ;
+        int cnt = 0;
         Node curr_node = head;
-        while (curr_node != null) {
-            while (curr_node.next != null && curr_node.val == curr_node.next.val) {
-                curr_node.next = curr_node.next.next;
-            }
 
-            curr_node = curr_node.next;
-        }
-        return head;
+
+        for (; curr_node != null; curr_node = curr_node.next)
+            for (; curr_node.next != null && curr_node.val == curr_node.next.val; curr_node.next = curr_node.next.next) ;
+
+        return head ;
     }
+
+
+
+//        for  (;curr_node != null;) {
+//            for  (;curr_node.next != null && curr_node.val == curr_node.next.val;) {
+//                curr_node.next = curr_node.next.next;
+//            }
+//
+//            curr_node = curr_node.next;
+//        }
+
+
+
 
 //create node.
     private Node head;
