@@ -97,45 +97,45 @@ public class BinarySearchTree {
         return curr_node;
     }
 
-//    public static Node bst_delete(Node root, Node node) {
-//        Node smallest_node;
-//        if (node.left == null) {
-//            root = bst_transplant(root, node, node.right);
-//        } else if (node.right == null) {
-//            root = bst_transplant(root, node, node.left);
-//        } else {
-//            smallest_node = bst_minimum(node.right);
-//            if (smallest_node.parent != node) {
-//                root = bst_transplant(root, smallest_node, smallest_node.right);
-//                addRightchild(smallest_node, node.right);
-//            }
-//
-//            root = bst_transplant(root, node, smallest_node);
-//            addLeftChild(smallest_node, node.left);
-//        }
-//
-//        return root;
-//    }
-//
-//    private static Node bst_transplant(Node root, Node current_node, Node new_node) {
-//        if (current_node == root) {
-//            root = new_node;
-//        } else if (current_node == current_node.parent.left) {
-//            addLeftChild(current_node.parent, new_node);
-//        } else {
-//            addRightchild(current_node.parent, new_node);
-//        }
-//
-//        return root;
-//    }
-//
-//    private static Node bst_minimum(Node root) {
-//        Node node = root;
-//        while (node.left != null) {
-//            node = node.left;
-//        }
-//        return node;
-//    }
+    public static Node bst_delete(Node root, Node node) {
+        Node smallest_node;
+        if (node.left == null) {
+            root = bst_transplant(root, node, node.right);
+        } else if (node.right == null) {
+            root = bst_transplant(root, node, node.left);
+        } else {
+            smallest_node = bst_minimum(node.right);
+            if (smallest_node.parent != node) {
+                root = bst_transplant(root, smallest_node, smallest_node.right);
+                addRightchild(smallest_node, node.right);
+            }
+
+            root = bst_transplant(root, node, smallest_node);
+            addLeftChild(smallest_node, node.left);
+        }
+
+        return root;
+    }
+
+    private static Node bst_transplant(Node root, Node current_node, Node new_node) {
+        if (current_node == root) {
+            root = new_node;
+        } else if (current_node == current_node.parent.left) {
+            addLeftChild(current_node.parent, new_node);
+        } else {
+            addRightchild(current_node.parent, new_node);
+        }
+
+        return root;
+    }
+
+    private static Node bst_minimum(Node root) {
+        Node node = root;
+        while (node.left != null) {
+            node = node.left;
+        }
+        return node;
+    }
 
     public static void main(String[] args) {
         Node root = createBST();
@@ -145,7 +145,7 @@ public class BinarySearchTree {
         Node node = bst_search(root, 10);
         if (node != null) {
             System.out.println("\nwill delete " + node.val);
-//            root = bst_delete(root, node);
+            root = bst_delete(root, node);
             preOrder(root);
         } else {
             System.out.println("\nnode is not found.");
