@@ -1,50 +1,62 @@
 package heap;
 
 public class HeapSort {
-    public static int left (int i) {
-        return 2 * i ;
-    }
-    public static int right(int i) {
-        return 2 * i + 1 ;
-    }
 
-    public static int parent (int i ) {
-        return  i / 2 ;
-    }
+    public void sort(int arr[]) {
+        int n = arr.length;
 
-   public static void max_heapify (int heap[] , int heap_size, int i) {
-        int l , r , largest , t ;
-        l = left(i);
-        r = right(i);
-        if (l < heap_size && heap[l] > heap [i]) {
-            largest = l ;
-        } else {
-            largest = i ;
+
+        for (int i = n / 2 - 1; i >= 0; i--) {
+            heapify(arr, n, i);
         }
+
+
+        for (int i = n - 1; i >= 0; i--) {
+            int temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+
+
+            heapify(arr, i, 0);
+        }
+    }
+
+    void heapify(int arr[], int n, int i) {
+
+        int largest = i;
+        int l = 2 * i + 1;
+        int r = 2 * i + 2;
+
+        if (l < n && arr[l] > arr[largest])
+            largest = l;
+
+        if (r < n && arr[r] > arr[largest])
+            largest = r;
+
 
         if (largest != i) {
-            t = heap[i] ;
-            heap[i] = heap[largest] ;
-            heap[largest] = t ;
+            int swap = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = swap;
 
-            max_heapify(heap, heap_size , largest);
+            heapify(arr, n, largest);
         }
-   }
-
-   public static void print_heap (int[] heap , int heap_size) {
-        int i ;
-        for (i  = 1 ; i <= heap_size; i++) {
-            System.out.print(heap[i] + " ");
-        }
-   }
-
-    public static void main(String[] args) {
-        int [] heap = {0, 19,7,12,3,5,17,10,1,2};
-        print_heap(heap , heap.length - 1);
-        System.out.println();
-        max_heapify(heap , heap.length -1 , 3);
-        print_heap(heap , heap.length - 1);
     }
 
+    static void printArray(int arr[]) {
+        int n = arr.length;
+        for (int i = 0; i < n; ++i)
+            System.out.print(arr[i] + " ");
+        System.out.println();
+    }
 
+    public static void main(String args[]) {
+        int arr[] = { 1, 12, 9, 5, 6, 10,1000, 1, 2,66 };
+
+        test.HeapSort hs = new test.HeapSort();
+        hs.sort(arr);
+
+        System.out.println("Sorted array is");
+        printArray(arr);
+    }
 }
