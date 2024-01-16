@@ -81,6 +81,16 @@ public class BinarySearchTree {
         }
     }
 
+    public void postOrder(Node root) {
+        if (root == null) {
+            return;
+        } else {
+            postOrder(root.left);
+            postOrder(root.right);
+            System.out.println(root.val + " ");
+        }
+    }
+
     public static void inOrder(Node root) {
         if (root == null) {
             return;
