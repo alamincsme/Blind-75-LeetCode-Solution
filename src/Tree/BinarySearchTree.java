@@ -62,7 +62,7 @@ public class BinarySearchTree {
 
     public static Node createBST() {
         Node root, node;
-        int[] arra = {5, 17, 3, 7, 12, 19, 1, 4};
+        int[] arra = {5, 17, 3, 7, 12, 19, 1, 4,21};
         root = createNode(10);
         for (int x : arra) {
             node = createNode(x);
@@ -78,6 +78,16 @@ public class BinarySearchTree {
             System.out.print(root.val + " ");
             preOrder(root.left);
             preOrder(root.right);
+        }
+    }
+
+    public static void inOrder(Node root) {
+        if (root == null) {
+            return;
+        } else {
+            inOrder(root.left);
+            System.out.println(root.val + " ");
+            inOrder(root.right);
         }
     }
 
@@ -142,13 +152,12 @@ public class BinarySearchTree {
         preOrder(root);
 
         // bst search
-        Node node = bst_search(root, 10);
+        Node node = bst_search(root, 19);
         if (node != null) {
-            System.out.println("\nwill delete " + node.val);
-            root = bst_delete(root, node);
-            preOrder(root);
-        } else {
-            System.out.println("\nnode is not found.");
+            System.out.println("will delete is : " + node.val);
+            root = bst_delete(root , node);
         }
+
+        preOrder(root);
     }
 }
